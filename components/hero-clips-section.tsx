@@ -2,11 +2,11 @@
 
 import type { FormEvent } from "react";
 import { useState } from "react";
-import { Link2, Loader2, Scissors } from "lucide-react";
+// import { Link2, Loader2, Scissors } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+// import { Badge } from "@/components/ui/badge";
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
 
 export function HeroClipsSection() {
   const [videoUrl, setVideoUrl] = useState("");
@@ -67,12 +67,12 @@ export function HeroClipsSection() {
       <div className="pointer-events-none absolute -right-16 bottom-10 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
 
       <div className="mx-auto flex min-h-[90vh] w-full max-w-6xl flex-col items-center justify-center px-4 py-16 text-center sm:px-6 lg:px-8">
-        <Badge
+        {/* <Badge
           variant="outline"
           className="border-white/20 bg-white/5 px-4 py-1 text-[0.68rem] tracking-[0.24em] text-white uppercase"
         >
           #1 AI VIDEO CLIPPING TOOL
-        </Badge>
+        </Badge> */}
 
         <h1 className="mt-8 text-balance text-4xl leading-tight font-semibold tracking-tight sm:text-5xl lg:text-7xl">
           1 long video, 10 viral clips. Create 10x faster.
@@ -91,7 +91,7 @@ export function HeroClipsSection() {
         >
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <div className="flex w-full items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] p-2 shadow-[0_16px_50px_-26px_rgba(255,255,255,0.7)] backdrop-blur-xl">
-              <Link2 className="ml-3 size-4 shrink-0 text-white/50" />
+              {/* <Link2 className="ml-3 size-4 shrink-0 text-white/50" />
 
               <Input
                 type="url"
@@ -117,19 +117,19 @@ export function HeroClipsSection() {
                 ) : (
                   "Get free clips"
                 )}
-              </Button>
+              </Button> */}
             </div>
 
             <p className="text-sm text-white/70">or</p>
 
-            <Button
+            {/* <Button
               type="button"
               variant="outline"
               size="lg"
               className="h-12 rounded-full border-white/20 bg-transparent px-7 text-base text-white hover:bg-white/10 hover:text-white"
             >
               Upload files
-            </Button>
+            </Button> */}
           </div>
         </form>
 
@@ -140,7 +140,7 @@ export function HeroClipsSection() {
         {result && (
           <div className="mt-6 w-full max-w-4xl rounded-3xl border border-white/15 bg-white/[0.04] p-6 text-left backdrop-blur-sm">
             <div className="flex items-center gap-2 text-sm text-white/70">
-              <Scissors className="size-4" />
+              {/* <Scissors className="size-4" /> */}
               <span>Request accepted</span>
             </div>
 

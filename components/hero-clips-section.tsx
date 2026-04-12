@@ -22,7 +22,7 @@ export function HeroClipsSection() {
     setResult(null);
 
     if (!trimmedUrl) {
-      setError("Please add a video URL first.");
+      setError("Please add a video URL first okay.");
       return;
     }
 

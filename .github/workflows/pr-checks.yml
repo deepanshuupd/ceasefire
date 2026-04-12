@@ -7,12 +7,17 @@ on:
 
 jobs:
   # ─── Job 1: Lint ─────────────────────────────────────────────────────────────
-  # ESLint with --max-warnings=0 — any warning or error fails this job.
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # ✅ Install pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - uses: actions/setup-node@v4
         with:
@@ -26,13 +31,17 @@ jobs:
         run: pnpm run lint:ci
 
   # ─── Job 2: Format ───────────────────────────────────────────────────────────
-  # Prettier check — does not modify files.
-  # If this fails, run `pnpm run format` locally and commit the result.
   format:
     name: Format
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # ✅ Install pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - uses: actions/setup-node@v4
         with:
@@ -46,14 +55,18 @@ jobs:
         run: pnpm run format:check
 
   # ─── Job 3: Build ────────────────────────────────────────────────────────────
-  # Full Next.js production build — only runs after lint and format pass.
-  # Catches broken imports, missing env vars, and JSX errors that lint alone misses.
   build:
     name: Build
     runs-on: ubuntu-latest
     needs: [lint, format]
     steps:
       - uses: actions/checkout@v4
+
+      # ✅ Install pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - uses: actions/setup-node@v4
         with:

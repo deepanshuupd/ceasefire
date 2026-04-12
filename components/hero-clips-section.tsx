@@ -9,8 +9,8 @@ import { useState } from "react";
 // import { Input } from "@/components/ui/input";
 
 export function HeroClipsSection() {
-  const [videoUrl, setVideoUrl] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [videoUrl] = useState("");
+  const [, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
 

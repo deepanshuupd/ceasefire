@@ -1,12 +1,5 @@
 name: Build & Deploy
 
-# Runs only when code lands on a deployable branch (after PR merge or direct push).
-# PR quality checks (lint, format, TypeScript, architecture) are handled separately
-# by pr-checks.yml and must pass before any PR can be merged.
-#
-# This workflow deploys to Vercel, but first runs a small pre-deploy safety net
-# for direct pushes that bypass the normal PR flow.
-
 on:
   push:
     branches:
@@ -15,8 +8,6 @@ on:
 
 jobs:
   # ─── Job 1: Verify ───────────────────────────────────────────────────────────
-  # Fast pre-deploy safety check. Ensures the code passes lint, format,
-  # and production build verification before we attempt a deployment.
   verify:
     name: Verify
     runs-on: ubuntu-latest
@@ -24,6 +15,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      # ✅ Install pnpm FIRST
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -44,17 +41,20 @@ jobs:
         run: pnpm run build
 
   # ─── Job 2: Deploy ───────────────────────────────────────────────────────────
-  # Deploys to Vercel only after the verify job passes.
-  # main   → Production deployment
-  # develop → Preview deployment
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    needs: verify # verify must pass before deploy runs
+    needs: verify
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      # ✅ Install pnpm here as well (separate job = fresh machine)
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -66,7 +66,7 @@ jobs:
         run: pnpm install
 
       - name: Install Vercel CLI
-        run: pnpm install -g vercel
+        run: pnpm add -g vercel
 
       - name: Deploy to Vercel (Production)
         if: github.ref == 'refs/heads/main'

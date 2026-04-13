@@ -11,7 +11,8 @@
     "lint:fix": "eslint . --fix",
     "lint:ci": "eslint . --max-warnings=0",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "validate": "pnpm run lint:ci && pnpm run format:check && pnpm run build"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

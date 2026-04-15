@@ -64,14 +64,52 @@ jobs:
       - name: Install Vercel CLI
         run: pnpm add -g vercel
 
+      # ─── Production (main)
+      - name: Pull Vercel project (Production)
+        if: github.ref == 'refs/heads/main'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN}}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PROD }}
+        run: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+
+      - name: Build (Production)
+        if: github.ref == 'refs/heads/main'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PROD }}
+        run: vercel build --prod --token=$VERCEL_TOKEN
+
       - name: Deploy to Vercel (Production)
         if: github.ref == 'refs/heads/main'
         env:
-          VERCEL_TOKEN_PROD: ${{ secrets.VERCEL_TOKEN_PROD }}
-        run: vercel --prod --yes --token=$VERCEL_TOKEN_PROD
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN}}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PROD }}
+        run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+
+      # ─── Preview (develop) ────────────────────────────────────────────────────
+      - name: Pull Vercel project (Preview)
+        if: github.ref == 'refs/heads/develop'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID}}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PREVIEW }}
+        run: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+
+      - name: Build (Preview)
+        if: github.ref == 'refs/heads/develop'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PREVIEW }}
+        run: vercel build --prod --token=$VERCEL_TOKEN
 
       - name: Deploy to Vercel (Preview)
         if: github.ref == 'refs/heads/develop'
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        run: vercel --prod --yes --token=$VERCEL_TOKEN
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PREVIEW }}
+        run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN

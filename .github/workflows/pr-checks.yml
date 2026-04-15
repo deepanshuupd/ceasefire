@@ -7,47 +7,50 @@ on:
 
 jobs:
   # ─── Job 1: Lint ─────────────────────────────────────────────────────────────
-  # ESLint with --max-warnings=0 — any warning or error fails this job.
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
+      # ✅ Install pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Run ESLint
-        run: npm run lint:ci
+        run: pnpm run lint:ci
 
   # ─── Job 2: Format ───────────────────────────────────────────────────────────
-  # Prettier check — does not modify files.
-  # If this fails, run `npm run format` locally and commit the result.
   format:
     name: Format
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
+      # ✅ Install pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Check Prettier formatting
-        run: npm run format:check
+        run: pnpm run format:check
 
   # ─── Job 3: Build ────────────────────────────────────────────────────────────
-  # Full Next.js production build — only runs after lint and format pass.
-  # Catches broken imports, missing env vars, and JSX errors that lint alone misses.
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -55,13 +58,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # ✅ Install pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Run Next.js production build
-        run: npm run build
+        run: pnpm run build

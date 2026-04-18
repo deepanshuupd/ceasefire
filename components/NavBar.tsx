@@ -35,7 +35,11 @@ type MobileBrandProps = {
   controlsId: string;
 };
 
-function MobileBrand({ isMenuOpen, onToggleMenu, controlsId }: MobileBrandProps) {
+function MobileBrand({
+  isMenuOpen,
+  onToggleMenu,
+  controlsId,
+}: MobileBrandProps) {
   return (
     <div className="flex items-center gap-2 md:hidden">
       <Button
@@ -44,7 +48,9 @@ function MobileBrand({ isMenuOpen, onToggleMenu, controlsId }: MobileBrandProps)
         size="icon"
         onClick={onToggleMenu}
         className="text-foreground hover:text-foreground"
-        aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-label={
+          isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+        }
         aria-expanded={isMenuOpen}
         aria-controls={controlsId}
       >
@@ -96,7 +102,9 @@ type HeaderActionsProps = {
 function HeaderActions({ showCtaOnMobile = true }: HeaderActionsProps) {
   return (
     <div className="flex items-center justify-end gap-2">
-      <TryForFreeButton className={cn(!showCtaOnMobile && "hidden sm:inline-flex")} />
+      <TryForFreeButton
+        className={cn(!showCtaOnMobile && "hidden sm:inline-flex")}
+      />
     </div>
   );
 }

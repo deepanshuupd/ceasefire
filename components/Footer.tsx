@@ -1,16 +1,16 @@
-import Link from "next/link"
-import { Camera, MessageCircle, X, LucideIcon } from "lucide-react"
+import Link from "next/link";
+import { Camera, MessageCircle, X, LucideIcon } from "lucide-react";
 
 type FooterGroup = {
-  heading: string
-  links: { label: string; href: string }[]
-}
+  heading: string;
+  links: { label: string; href: string }[];
+};
 
 type SocialLink = {
-  label: "Discord" | "X" | "Instagram"
-  href: string
-  icon: LucideIcon
-}
+  label: "Discord" | "X" | "Instagram";
+  href: string;
+  icon: LucideIcon;
+};
 
 const footerGroups: FooterGroup[] = [
   {
@@ -41,13 +41,13 @@ const footerGroups: FooterGroup[] = [
       { label: "Tips", href: "#" },
     ],
   },
-]
+];
 
 const socialLinks: SocialLink[] = [
   { label: "Discord", href: "#", icon: MessageCircle },
   { label: "X", href: "#", icon: X },
   { label: "Instagram", href: "#", icon: Camera },
-]
+];
 
 function FooterGroup({ group }: { group: FooterGroup }) {
   return (
@@ -68,14 +68,14 @@ function FooterGroup({ group }: { group: FooterGroup }) {
         ))}
       </ul>
     </div>
-  )
+  );
 }
 
 function SocialLinks() {
   return (
     <div className="flex items-center gap-4">
       {socialLinks.map((social) => {
-        const Icon = social.icon
+        const Icon = social.icon;
         return (
           <Link
             key={social.label}
@@ -85,10 +85,10 @@ function SocialLinks() {
           >
             <Icon className="h-5 w-5" />
           </Link>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
 
 export default function Footer() {
@@ -122,5 +122,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

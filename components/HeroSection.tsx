@@ -2,8 +2,6 @@
 
 import type { FormEvent } from "react";
 import { useState } from "react";
-
-import { api } from "@/lib/api";
 import { Link2, Loader2, Scissors } from "lucide-react";
 
 import { Badge, Button, Input } from "@/common";
@@ -29,11 +27,16 @@ export function HeroClipsSection() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(api.jobs.create(), {
+      const response = await fetch("http://localhost:8080/api/jobs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+
+        
+        
+        
+        
         body: JSON.stringify({ youtubeUrl: trimmedUrl }),
       });
       if (!response.ok) {

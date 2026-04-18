@@ -12,6 +12,7 @@
     "lint:ci": "eslint . --max-warnings=0",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "prepare": "husky",
     "validate": "pnpm run lint:ci && pnpm run format:check && pnpm run build"
   },
   "dependencies": {
@@ -33,6 +34,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
+    "husky": "^9.1.7",
     "prettier": "^3.8.1",
     "tailwindcss": "^4",
     "typescript": "^5"

@@ -1,0 +1,10 @@
+echo "🟡 Running full lint..."
+pnpm lint:ci || exit 1
+echo "✅ Linting passed."
+
+echo "🟡 Running type check..."
+pnpm exec tsc --noEmit || exit 1
+echo "✅ Type check passed."
+
+echo "✅ All checks passed. Ready to commit."
+echo "Ready to push."

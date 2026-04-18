@@ -1,1 +1,12 @@
-pnpm format
+echo "🟡 Running lint-staged..."
+pnpm lint-staged || exit 1
+echo "✅ Lint-staged passed"
+
+if ! pnpm format:check; then
+  echo "⚠️ Format issues found. Fixing..."
+  pnpm format || exit 1
+else
+  echo "✅ Format check passed"
+fi
+
+echo "Ready to commit."

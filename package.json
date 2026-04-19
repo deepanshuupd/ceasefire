@@ -12,7 +12,17 @@
     "lint:ci": "eslint . --max-warnings=0",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "prepare": "husky",
     "validate": "pnpm run lint:ci && pnpm run format:check && pnpm run build"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -33,6 +43,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "prettier": "^3.8.1",
     "tailwindcss": "^4",
     "typescript": "^5"

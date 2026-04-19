@@ -2,10 +2,9 @@
 
 import type { FormEvent } from "react";
 import { useState } from "react";
-
-import { api } from "@/lib/api";
 import { Link2, Loader2, Scissors } from "lucide-react";
 
+import { api } from "@/lib/api";
 import { Badge, Button, Input } from "@/common";
 
 export function HeroClipsSection() {
@@ -34,6 +33,7 @@ export function HeroClipsSection() {
         headers: {
           "Content-Type": "application/json",
         },
+
         body: JSON.stringify({ youtubeUrl: trimmedUrl }),
       });
       if (!response.ok) {

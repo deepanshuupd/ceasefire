@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useId, useState } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -19,13 +20,13 @@ const NAV_ITEMS: NavItem[] = [
 
 function Brand() {
   return (
-    <a
+    <Link
       href="#"
       className="text-lg font-semibold tracking-tight text-foreground"
       aria-label="Clipforge home"
     >
       Clipforge
-    </a>
+    </Link>
   );
 }
 
@@ -67,13 +68,12 @@ function DesktopNav() {
       <ul className="flex items-center gap-2">
         {NAV_ITEMS.map((item) => (
           <li key={item.label}>
-            <a
+            <Link
               href={item.href}
-              onClick={(event) => event.preventDefault()}
               className="inline-flex h-10 items-center rounded-md px-4 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               {item.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
@@ -128,16 +128,13 @@ function MobileMenu({ id, isOpen, onItemSelect }: MobileMenuProps) {
         <ul className="flex flex-col gap-1 pt-3">
           {NAV_ITEMS.map((item) => (
             <li key={item.label}>
-              <a
+              <Link
                 href={item.href}
-                onClick={(event) => {
-                  event.preventDefault();
-                  onItemSelect();
-                }}
+                onClick={onItemSelect}
                 className="inline-flex h-10 w-full items-center rounded-md px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               >
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

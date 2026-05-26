@@ -4,7 +4,7 @@ import type { FormEvent } from "react";
 import { useState } from "react";
 import { Link2, Loader2, Scissors } from "lucide-react";
 
-import { api } from "@/lib/api";
+import { api } from "@/api";
 import { Badge, Button, Input } from "@/common";
 
 export function HeroClipsSection() {
@@ -28,32 +28,12 @@ export function HeroClipsSection() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(api.jobs.create(), {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify({ youtubeUrl: trimmedUrl }),
-      });
-      if (!response.ok) {
-        const text = await response.text();
-        let message = "Could not create clips.";
-        try {
-          const json = JSON.parse(text);
-          message = json.error ?? json.message ?? message;
-        } catch {
-          message = text || message;
-        }
-        throw new Error(message);
-      }
-
-      const payload = await response.text();
-      setResult(payload);
-    } catch (submitError) {
+      const response = await api.jobs.create({ youtubeUrl: trimmedUrl });
+      setResult(String(response.data));
+    } catch (err) {
       setError(
-        submitError instanceof Error
-          ? submitError.message
+        err instanceof Error
+          ? err.message
           : "Could not create clips. Please try again.",
       );
     } finally {

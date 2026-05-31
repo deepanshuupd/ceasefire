@@ -5,9 +5,11 @@ import { useState } from "react";
 import { Link2, Loader2, Scissors } from "lucide-react";
 
 import { api } from "@/api";
-import { Badge, Button, Input } from "@/common";
+import { Badge } from "../ui/badge";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
-export function HeroClipsSection() {
+export const HeroClipsSection = () => {
   const [videoUrl, setVideoUrl] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -130,4 +132,4 @@ export function HeroClipsSection() {
       </div>
     </section>
   );
-}
+};

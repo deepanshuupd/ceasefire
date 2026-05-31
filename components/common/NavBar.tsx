@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 import { Menu, X } from "lucide-react";
 
-import { Button } from "@/common";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type NavItem = {
@@ -143,7 +143,7 @@ function MobileMenu({ id, isOpen, onItemSelect }: MobileMenuProps) {
   );
 }
 
-export function NavBar() {
+export const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const mobileMenuId = useId();
 
@@ -171,4 +171,4 @@ export function NavBar() {
       />
     </header>
   );
-}
+};

@@ -91,7 +91,7 @@ function SocialLinks() {
   );
 }
 
-export default function Footer() {
+export const Footer = () => {
   return (
     <footer className="bg-background px-6 py-10 sm:px-8">
       <div className="mx-auto w-full max-w-7xl footer-surface px-6 py-10 md:px-8 md:py-12">
@@ -123,4 +123,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};

@@ -1,5 +1,5 @@
 import React from "react";
-import { Footer, HeroClipsSection, NavBar } from "@/components";
+import { Footer, HeroClipsSection, NavBar } from "@/components/common";
 
 const page = () => {
   return (

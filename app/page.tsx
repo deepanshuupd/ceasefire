@@ -1,8 +1,7 @@
-import { HeroClipsSection } from "@/components/HeroSection";
-import { NavBar } from "@/components/NavBar";
-import Footer from "@/components/Footer";
+import React from "react";
+import { Footer, HeroClipsSection, NavBar } from "@/components/common";
 
-export default function Home() {
+const page = () => {
   return (
     <div className="dark flex min-h-screen flex-col bg-zinc-900 font-sans dark:bg-black">
       <NavBar />
@@ -10,4 +9,6 @@ export default function Home() {
       <Footer />
     </div>
   );
-}
+};
+
+export default page;
